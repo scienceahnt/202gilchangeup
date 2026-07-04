@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b2a4a">
+<title>2026 길교회 유년부·소년부 연합 여름성경학교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0d2b4e;
+    --navy-2:#123a68;
+    --blue:#1f6fd6;
+    --blue-bright:#2e86e6;
+    --blue-soft:#eaf3fd;
+    --blue-line:#d6e6f7;
+    --sky:#7fbef0;
+    --ink:#152a3f;
+    --ink-2:#4a5d72;
+    --ink-3:#8496a8;
+    --paper:#ffffff;
+    --bg:#f4f8fd;
+    --accent:#ffb020;
+    --accent-deep:#e8971a;
+    --line:#e6edf5;
+    --flash:#fff3d6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Gothic A1',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:-.01em;
+  }
+  .wrap{max-width:440px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
+
+  /* section rhythm */
+  section{padding:44px 24px;position:relative;}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,.8,.24,1),transform .7s cubic-bezier(.16,.8,.24,1);}
+  .reveal.in{opacity:1;transform:none;}
+  /* staggered children inside a revealed section */
+  .reveal .info-row,.reveal .step,.reveal .day,.reveal .plist .p,.reveal .dept,.reveal .prayer-box{
+    opacity:0;transform:translateY(18px);
+    transition:opacity .6s cubic-bezier(.16,.8,.24,1),transform .6s cubic-bezier(.16,.8,.24,1);
+  }
+  .reveal.in .info-row,.reveal.in .step,.reveal.in .day,.reveal.in .plist .p,.reveal.in .dept,.reveal.in .prayer-box{
+    opacity:1;transform:none;
+  }
+  .reveal.in .info-row:nth-child(2),.reveal.in .step:nth-of-type(2),.reveal.in .day:nth-of-type(2),
+  .reveal.in .plist .p:nth-child(2),.reveal.in .dept:nth-of-type(2){transition-delay:.08s;}
+  .reveal.in .info-row:nth-child(3),.reveal.in .step:nth-of-type(3),.reveal.in .day:nth-of-type(3),
+  .reveal.in .plist .p:nth-child(3){transition-delay:.16s;}
+  .reveal.in .info-row:nth-child(4),.reveal.in .plist .p:nth-child(4){transition-delay:.24s;}
+  .reveal.in .plist .p:nth-child(5){transition-delay:.3s;}
+  .reveal.in .plist .p:nth-child(6){transition-delay:.36s;}
+  .reveal.in .plist .p:nth-child(7){transition-delay:.42s;}
+  .reveal.in .plist .p:nth-child(8){transition-delay:.48s;}
+
+  /* scroll progress bar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+    background:linear-gradient(90deg,#2e86e6,#39c0d8,#ffb020);transition:width .1s linear;}
+
+  .eyebrow{
+    font-size:.72rem;font-weight:700;letter-spacing:.22em;
+    color:var(--blue);text-transform:uppercase;margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:22px;height:2px;background:var(--blue);border-radius:2px;}
+  .eyebrow.center{justify-content:center;}
+  .eyebrow.center::after{content:'';width:22px;height:2px;background:var(--blue);border-radius:2px;}
+
+  .sec-h{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.3;}
+  .sec-sub{font-size:.92rem;color:var(--ink-3);margin-top:8px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(165deg,#081f3b 0%,#0d2b4e 42%,#143c6b 78%,#1c5088 100%);
+    color:#fff;
+    padding:74px 24px 58px;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  /* aurora glow — slow drifting colored light */
+  .hero .aurora{position:absolute;inset:-20% -20% 0 -20%;z-index:-3;pointer-events:none;}
+  .hero .aurora span{
+    position:absolute;border-radius:50%;filter:blur(48px);opacity:.5;
+    mix-blend-mode:screen;animation:aur 18s ease-in-out infinite;
+  }
+  .hero .aurora .a1{width:280px;height:280px;background:#2e86e6;top:-60px;right:-40px;}
+  .hero .aurora .a2{width:240px;height:240px;background:#39c0d8;bottom:-40px;left:-50px;animation-delay:-6s;animation-duration:22s;}
+  .hero .aurora .a3{width:200px;height:200px;background:#8a5cf0;top:40%;left:30%;animation-delay:-11s;animation-duration:26s;opacity:.35;}
+  @keyframes aur{
+    0%,100%{transform:translate(0,0) scale(1);}
+    33%{transform:translate(26px,-18px) scale(1.12);}
+    66%{transform:translate(-20px,14px) scale(.94);}
+  }
+  /* drifting cloud silhouettes */
+  .hero .clouds{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+  .hero .clouds i{
+    position:absolute;background:rgba(255,255,255,.06);border-radius:100px;
+    filter:blur(6px);animation:cloudmove linear infinite;
+  }
+  .hero .clouds i::before,.hero .clouds i::after{content:'';position:absolute;background:inherit;border-radius:50%;}
+  .hero .clouds .cl1{width:150px;height:36px;top:18%;left:-180px;animation-duration:42s;}
+  .hero .clouds .cl1::before{width:70px;height:70px;top:-28px;left:26px;}
+  .hero .clouds .cl1::after{width:52px;height:52px;top:-18px;left:80px;}
+  .hero .clouds .cl2{width:110px;height:28px;top:58%;left:-160px;animation-duration:56s;animation-delay:-20s;opacity:.7;}
+  .hero .clouds .cl2::before{width:54px;height:54px;top:-22px;left:20px;}
+  .hero .clouds .cl2::after{width:40px;height:40px;top:-14px;left:60px;}
+  @keyframes cloudmove{from{transform:translateX(0);}to{transform:translateX(680px);}}
+  /* twinkling stars */
+  .stars{position:absolute;inset:0;z-index:-1;pointer-events:none;}
+  .stars i{position:absolute;background:#fff;border-radius:50%;animation:tw 3.5s ease-in-out infinite;}
+  @keyframes tw{0%,100%{opacity:.15;transform:scale(.7);}50%{opacity:.95;transform:scale(1);}}
+  /* shooting star */
+  .hero .shoot{
+    position:absolute;top:22%;left:-10%;width:90px;height:1.5px;z-index:-1;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.9));border-radius:2px;
+    transform:rotate(18deg);opacity:0;animation:shoot 9s ease-in infinite;animation-delay:3s;
+  }
+  @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(18deg);}
+    4%{opacity:1;}12%{opacity:0;transform:translate(320px,105px) rotate(18deg);}100%{opacity:0;}}
+  .hero::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:1px;z-index:1;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  }
+
+  .hero-inner{position:relative;z-index:2;will-change:transform,opacity;}
+
+  .hero .kicker{
+    font-size:.74rem;font-weight:700;letter-spacing:.32em;color:var(--sky);
+    text-transform:uppercase;margin-bottom:20px;position:relative;
+  }
+  .hero .year{
+    font-size:1rem;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.1em;margin-bottom:6px;
+  }
+  .hero h1{
+    font-size:2.35rem;font-weight:900;line-height:1.22;letter-spacing:-.03em;position:relative;
+  }
+  .hero h1 em{font-style:normal;color:var(--sky);}
+  .hero .theme{
+    display:inline-flex;align-items:baseline;gap:10px;margin-top:22px;
+    padding:9px 18px;border:1px solid rgba(255,255,255,.22);border-radius:100px;
+    background:rgba(255,255,255,.06);backdrop-filter:blur(2px);
+  }
+  .hero .theme b{font-weight:800;font-size:1.05rem;letter-spacing:.02em;}
+  .hero .theme span{font-size:.82rem;color:rgba(255,255,255,.65);font-weight:500;}
+  .hero .verse{
+    margin-top:24px;font-size:.92rem;color:rgba(255,255,255,.85);font-weight:400;
+    padding-left:14px;border-left:2px solid var(--accent);line-height:1.6;
+  }
+  .hero .verse b{color:#fff;font-weight:700;}
+
+  /* ---------- GREETING ---------- */
+  .greeting{background:var(--paper);}
+  .greeting p{font-size:1rem;color:var(--ink-2);margin-bottom:16px;font-weight:400;}
+  .greeting p.lead{font-size:1.18rem;font-weight:700;color:var(--ink);line-height:1.5;margin-bottom:20px;letter-spacing:-.02em;}
+  .greeting strong{color:var(--blue);font-weight:700;}
+
+  /* ---------- INFO ---------- */
+  .info{background:var(--paper);}
+  .info-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:22px;}
+  .info-row{
+    display:grid;grid-template-columns:78px 1fr;background:var(--paper);
+    padding:18px 20px;align-items:baseline;gap:6px;
+  }
+  .info-row .k{font-size:.82rem;font-weight:700;color:var(--blue);letter-spacing:.04em;}
+  .info-row .v{font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
+  .info-row .v small{display:block;font-size:.85rem;font-weight:400;color:var(--ink-3);margin-top:3px;letter-spacing:0;}
+  .info-row .v small + small{margin-top:5px;padding-top:5px;border-top:1px dashed var(--line);}
+
+  .acct-wrap{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+
+  .stay{
+    margin-top:16px;display:flex;gap:16px;align-items:center;
+    background:linear-gradient(135deg,#0d2b4e,#1b4c82);color:#fff;
+    padding:20px 22px;border-radius:18px;position:relative;overflow:hidden;
+  }
+  .stay::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(255,176,32,.3),transparent 70%);}
+  .stay .badge{
+    flex:0 0 auto;width:52px;height:52px;border-radius:14px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .stay .badge svg{width:26px;height:26px;}
+  .stay .t{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;}
+  .stay .d{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:3px;}
+
+  /* ---------- GROWTH ---------- */
+  .growth{background:var(--bg);}
+  .step{
+    background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:22px 22px 20px;margin-top:14px;position:relative;
+    box-shadow:0 2px 12px rgba(18,58,104,.05);
+  }
+  .step .idx{
+    font-size:.72rem;font-weight:800;letter-spacing:.14em;color:var(--blue);
+    display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  }
+  .step .idx b{
+    width:26px;height:26px;border-radius:8px;background:var(--blue-soft);
+    color:var(--blue);display:flex;align-items:center;justify-content:center;
+    font-size:.9rem;font-weight:800;
+  }
+  .step h3{font-size:1.22rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;}
+  .step h3 em{font-style:normal;color:var(--blue-bright);}
+  .step p{font-size:.95rem;color:var(--ink-2);margin-top:8px;}
+  .step .loc{
+    display:inline-block;margin-top:14px;font-size:.78rem;font-weight:700;
+    color:var(--ink-3);letter-spacing:.02em;
+    padding:5px 12px;border:1px solid var(--line);border-radius:100px;
+  }
+  .growth .tail{text-align:center;font-size:.9rem;color:var(--ink-3);margin-top:20px;font-weight:500;}
+
+  /* ---------- SCHEDULE ---------- */
+  .schedule{background:var(--bg);}
+  .day{
+    background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    margin-top:12px;overflow:hidden;box-shadow:0 2px 12px rgba(18,58,104,.04);
+  }
+  .day summary{
+    list-style:none;cursor:pointer;padding:18px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .day summary::-webkit-details-marker{display:none;}
+  .day .dl{display:flex;align-items:center;gap:12px;}
+  .day .dn{
+    font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--blue);
+    background:var(--blue-soft);border-radius:8px;padding:5px 9px;white-space:nowrap;
+  }
+  .day .dt{font-size:1.02rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+  .day .dt small{display:block;font-size:.78rem;font-weight:500;color:var(--ink-3);margin-top:1px;letter-spacing:0;}
+  .day .chev{width:18px;height:18px;color:var(--ink-3);transition:transform .3s;flex:0 0 auto;}
+  .day[open] .chev{transform:rotate(180deg);}
+  .day .rows{border-top:1px solid var(--line);padding:6px 20px 14px;}
+  .day .r{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);align-items:baseline;}
+  .day .r:first-child{border-top:none;}
+  .day .r .tm{font-size:.82rem;font-weight:700;color:var(--blue);letter-spacing:-.01em;white-space:nowrap;}
+  .day .r .ev{font-size:.92rem;color:var(--ink-2);font-weight:500;}
+  .day .r .ev b{color:var(--ink);font-weight:700;}
+
+  /* ---------- PACKING ---------- */
+  .packing{background:var(--paper);}
+  .bible{
+    margin-top:22px;border-radius:18px;overflow:hidden;position:relative;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+    padding:24px;color:#3a2a04;
+  }
+  .bible .tagline{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.7;}
+  .bible .name{font-size:1.6rem;font-weight:900;letter-spacing:-.02em;margin-top:6px;display:flex;align-items:center;gap:10px;}
+  .bible .name svg{width:28px;height:28px;}
+  .bible .desc{font-size:.9rem;font-weight:600;margin-top:6px;opacity:.85;}
+  .plist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .plist .p{
+    background:var(--bg);border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;font-size:.95rem;font-weight:600;color:var(--ink);
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .plist .p small{font-size:.78rem;color:var(--ink-3);font-weight:400;}
+
+  /* ---------- CONTACT / SPONSOR ---------- */
+  .contact{background:var(--bg);}
+  .sponsor{background:var(--paper);}
+  .dept{
+    background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:20px 22px;margin-top:14px;box-shadow:0 2px 12px rgba(18,58,104,.04);
+  }
+  .contact .dept{background:var(--paper);}
+  .dept .head{
+    display:flex;align-items:center;gap:9px;margin-bottom:14px;
+    font-size:1.02rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;
+  }
+  .dept .head i{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;}
+  .dept.younger .head i{background:var(--accent);}
+  .dept .prow{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    padding:11px 0;border-top:1px solid var(--line);
+  }
+  .dept .prow:first-of-type{border-top:none;}
+  .dept .prow .role{font-size:.92rem;color:var(--ink-2);font-weight:500;}
+  .dept .prow a.tel{
+    font-size:1rem;font-weight:800;color:var(--blue);text-decoration:none;
+    letter-spacing:.01em;white-space:nowrap;
+  }
+
+  .acct{
+    width:100%;text-align:left;cursor:pointer;border:none;font-family:inherit;
+    background:var(--blue-soft);border:1px solid var(--blue-line);border-radius:14px;
+    padding:15px 16px;display:block;
+    transition:background .25s,transform .08s;
+  }
+  .acct:active{transform:scale(.985);}
+  .acct.flashed{background:var(--flash);border-color:var(--accent);}
+  .acct .bank{font-size:.8rem;color:var(--ink-3);font-weight:600;letter-spacing:.01em;display:block;}
+  .acct .btm{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px;}
+  .acct .no{font-size:1.28rem;font-weight:800;color:var(--ink);letter-spacing:.02em;line-height:1;white-space:nowrap;}
+  .acct .cta{
+    flex:0 0 auto;font-size:.76rem;font-weight:700;color:var(--blue);
+    background:#fff;border:1px solid var(--blue-line);border-radius:100px;
+    padding:7px 13px;display:flex;align-items:center;gap:5px;white-space:nowrap;
+  }
+  .acct .cta svg{width:13px;height:13px;}
+  .acct.flashed .cta{color:var(--accent-deep);border-color:var(--accent);}
+
+  /* ---------- PRAYER ---------- */
+  .prayer{background:var(--bg);}
+  .prayer-box{
+    margin-top:20px;border:1.5px dashed var(--blue-line);border-radius:18px;
+    padding:36px 24px;text-align:center;background:var(--paper);
+  }
+  .prayer-box .mk{
+    width:44px;height:44px;margin:0 auto 14px;border-radius:12px;
+    background:var(--blue-soft);display:flex;align-items:center;justify-content:center;
+  }
+  .prayer-box .mk svg{width:22px;height:22px;}
+  .prayer-box h3{font-size:1.15rem;font-weight:800;color:var(--navy);}
+  .prayer-box p{font-size:.92rem;color:var(--ink-2);margin-top:8px;}
+  .prayer-box .soon{
+    display:inline-block;margin-top:16px;font-size:.8rem;font-weight:700;color:var(--blue);
+    background:var(--blue-soft);border-radius:100px;padding:7px 18px;letter-spacing:.02em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:linear-gradient(160deg,#0d2b4e,#123a68);color:#fff;
+    padding:48px 24px 42px;text-align:center;position:relative;overflow:hidden;
+  }
+  footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);}
+  footer .fk{font-size:.72rem;font-weight:700;letter-spacing:.28em;color:var(--sky);text-transform:uppercase;margin-bottom:16px;}
+  footer .msg{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;line-height:1.4;}
+  footer .sub{font-size:.92rem;color:rgba(255,255,255,.7);margin-top:12px;}
+  footer .church{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.95rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.02em;}
+
+  /* toast */
+  .toast{
+    position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(16px);
+    background:var(--navy);color:#fff;font-weight:700;font-size:.9rem;
+    padding:13px 24px;border-radius:100px;box-shadow:0 10px 30px rgba(13,43,78,.4);
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:50;
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast svg{width:16px;height:16px;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+    <div class="clouds" aria-hidden="true"><i class="cl1"></i><i class="cl2"></i></div>
+    <div class="stars" id="stars" aria-hidden="true"></div>
+    <div class="shoot" aria-hidden="true"></div>
+    <div class="hero-inner" id="heroInner">
+    <div class="kicker">Change Up · 체인지 업</div>
+    <div class="year">2026 여름성경학교</div>
+    <h1>유년부·소년부<br><em>연합</em> 여름성경학교</h1>
+    <div class="theme">
+      <b>체인지 업</b>
+      <span>Change Up</span>
+    </div>
+    <p class="verse">이전 것은 지나갔으니 보라<br><b>새것이 되었도다</b> — 고린도후서 5:17</p>
+    </div>
+  </header>
+
+  <!-- GREETING -->
+  <section class="greeting reveal">
+    <div class="eyebrow">Welcome</div>
+    <p class="lead">샬롬, 주님의 이름으로<br>문안드립니다.</p>
+    <p>사랑하는 자녀가 하나님의 말씀과 은혜 가운데 바르게 자랄 수 있도록 늘 기도와 사랑으로 함께해 주셔서 감사합니다.</p>
+    <p>이번 여름, 우리 아이들이 예수님을 만나 <strong>하나님이 원하시는 모습</strong>으로 변화되고 자라가기를 기대하며 이 성경학교를 준비했습니다.</p>
+  </section>
+
+  <!-- INFO -->
+  <section class="info reveal">
+    <div class="eyebrow">Overview</div>
+    <h2 class="sec-h">한눈에 보기</h2>
+    <div class="info-grid">
+      <div class="info-row"><span class="k">주제</span><span class="v">체인지 업 (Change Up)<small>고린도후서 5:17 · 새로운 피조물</small></span></div>
+      <div class="info-row"><span class="k">일시</span><span class="v">7. 17(금) – 7. 18(토)<small>17일 오전 10시 시작 · 1박 2일</small><small>7. 19(주일) 함께 예배드립니다</small></span></div>
+      <div class="info-row"><span class="k">장소</span><span class="v">길교회 3층</span></div>
+      <div class="info-row"><span class="k">회비</span><span class="v">35,000원<small>아래 계좌로 입금해 주세요</small></span></div>
+    </div>
+
+    <div class="acct-wrap">
+      <button class="acct" data-copy="농협 355-0053-6726-73">
+        <span class="bank">유년부 · 농협 · 예금주 길교회(유년부)</span>
+        <span class="btm">
+          <span class="no">355-0053-6726-73</span>
+          <span class="cta"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 0 1 2-2h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>복사</span>
+        </span>
+      </button>
+      <button class="acct" data-copy="농협 355-0053-6525-23">
+        <span class="bank">소년부 · 농협 · 예금주 길교회(소년부)</span>
+        <span class="btm">
+          <span class="no">355-0053-6525-23</span>
+          <span class="cta"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 0 1 2-2h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>복사</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="stay">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="#ffb020" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="t">7월 17일 밤, 교회에서 함께 잡니다</div>
+        <div class="d">찬양·기도회, 야식 후 취침까지 1박 2일 프로그램</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH -->
+  <section class="growth reveal">
+    <div class="eyebrow">Journey</div>
+    <h2 class="sec-h">우리 아이, 이렇게 자랍니다</h2>
+    <p class="sec-sub">사흘 동안 세 걸음으로 성장하는 여정</p>
+
+    <div class="step">
+      <div class="idx"><b>1</b> STEP 01</div>
+      <h3><em>구원</em>으로 체인지 업</h3>
+      <p>예수님이 나를 위해 하신 일을 배우며, 하나님의 자녀로 새롭게 태어나는 기쁨을 만납니다.</p>
+      <span class="loc">여리고 마을</span>
+    </div>
+    <div class="step">
+      <div class="idx"><b>2</b> STEP 02</div>
+      <h3><em>전도</em>로 체인지 업</h3>
+      <p>받은 사랑을 친구들에게 전하는 법을 배우며, 나눔과 용기의 마음이 자라납니다.</p>
+      <span class="loc">갈릴리 마을</span>
+    </div>
+    <div class="step">
+      <div class="idx"><b>3</b> STEP 03</div>
+      <h3><em>성장</em>으로 체인지 업</h3>
+      <p>말씀 안에서 매일 자라가는 어린이가 되도록, 믿음의 뿌리를 든든히 세웁니다.</p>
+      <span class="loc">어드벤처 빌리지</span>
+    </div>
+    <p class="tail">찬양 · 주제활동 · 액션북 · 물놀이까지 알찬 시간이 가득합니다</p>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="schedule reveal">
+    <div class="eyebrow">Schedule</div>
+    <h2 class="sec-h">일정표</h2>
+    <p class="sec-sub">날짜를 누르면 세부 일정이 펼쳐집니다</p>
+
+    <details class="day" open>
+      <summary>
+        <span class="dl"><span class="dn">DAY 1</span><span class="dt">7월 17일<small>금요일</small></span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="rows">
+        <div class="r"><span class="tm">09:30–10:00</span><span class="ev">성경학교 등록</span></div>
+        <div class="r"><span class="tm">10:00–11:00</span><span class="ev">찬양 &amp; 와글와글</span></div>
+        <div class="r"><span class="tm">11:00–12:00</span><span class="ev"><b>1과</b> 구원으로 체인지 업!</span></div>
+        <div class="r"><span class="tm">12:00–13:30</span><span class="ev">점심식사</span></div>
+        <div class="r"><span class="tm">13:30–17:00</span><span class="ev">찬양 · 1과 주제활동(여리고 마을) &amp; 액션북</span></div>
+        <div class="r"><span class="tm">17:00–18:30</span><span class="ev">저녁식사</span></div>
+        <div class="r"><span class="tm">18:30–20:00</span><span class="ev">찬양 &amp; 기도회</span></div>
+        <div class="r"><span class="tm">20:00–22:00</span><span class="ev">야식 후 취침</span></div>
+      </div>
+    </details>
+
+    <details class="day">
+      <summary>
+        <span class="dl"><span class="dn">DAY 2</span><span class="dt">7월 18일<small>토요일</small></span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="rows">
+        <div class="r"><span class="tm">08:00–09:00</span><span class="ev">아침식사</span></div>
+        <div class="r"><span class="tm">09:00–10:30</span><span class="ev">찬양 · <b>2과</b> 전도로 체인지 업!</span></div>
+        <div class="r"><span class="tm">10:30–12:30</span><span class="ev">2과 주제활동(갈릴리 마을) &amp; 액션북</span></div>
+        <div class="r"><span class="tm">12:30–13:30</span><span class="ev">점심식사</span></div>
+        <div class="r"><span class="tm">13:30–14:00</span><span class="ev">3과 주제활동(어드벤처 빌리지)</span></div>
+        <div class="r"><span class="tm">14:00–17:00</span><span class="ev">물놀이</span></div>
+        <div class="r"><span class="tm">17:00~</span><span class="ev">집으로 귀가</span></div>
+      </div>
+    </details>
+
+    <details class="day">
+      <summary>
+        <span class="dl"><span class="dn">DAY 3</span><span class="dt">7월 19일<small>주일</small></span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <div class="rows">
+        <div class="r"><span class="tm">10:00까지</span><span class="ev">교회로!</span></div>
+        <div class="r"><span class="tm">예배</span><span class="ev"><b>3과</b> 성장으로 체인지 업!</span></div>
+        <div class="r"><span class="tm">이후</span><span class="ev">1학기 달란트 시상 및 수료식</span></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- PACKING -->
+  <section class="packing reveal">
+    <div class="eyebrow">Checklist</div>
+    <h2 class="sec-h">준비물</h2>
+    <p class="sec-sub">1박 2일, 아래 물품을 꼭 챙겨 주세요</p>
+
+    <div class="bible">
+      <div class="tagline">Most Important</div>
+      <div class="name">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v16H6.5A2.5 2.5 0 0 0 4 21.5V5.5Z" stroke="#3a2a04" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v16h5.5A2.5 2.5 0 0 1 20 21.5V5.5Z" stroke="#3a2a04" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        성경책
+      </div>
+      <div class="desc">가장 중요한 준비물입니다. 잊지 말고 꼭 챙겨 와요.</div>
+    </div>
+
+    <div class="plist">
+      <div class="p">세면도구</div>
+      <div class="p">갈아입을 옷</div>
+      <div class="p">수건</div>
+      <div class="p">개인 컵</div>
+      <div class="p">물놀이 용품<small>수영복 · 여벌옷</small></div>
+      <div class="p">개인 상비약</div>
+      <div class="p">잠옷</div>
+      <div class="p">즐거운 마음</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact reveal">
+    <div class="eyebrow">Contact</div>
+    <h2 class="sec-h">문의</h2>
+    <p class="sec-sub">궁금한 점은 언제든지 연락 주세요</p>
+
+    <div class="dept younger">
+      <div class="head"><i></i>유년부</div>
+      <div class="prow"><span class="role">김유진 지도교사</span><a class="tel" href="tel:010-8956-3489">010-8956-3489</a></div>
+      <div class="prow"><span class="role">안성준 부장교사</span><a class="tel" href="tel:010-3911-3922">010-3911-3922</a></div>
+    </div>
+    <div class="dept">
+      <div class="head"><i></i>소년부</div>
+      <div class="prow"><span class="role">최상희 지도교사</span><a class="tel" href="tel:010-5230-9572">010-5230-9572</a></div>
+      <div class="prow"><span class="role">김명수 부장교사</span><a class="tel" href="tel:010-2982-8520">010-2982-8520</a></div>
+    </div>
+  </section>
+
+  <!-- PRAYER -->
+  <section class="prayer reveal">
+    <div class="eyebrow">Pray Together</div>
+    <h2 class="sec-h">기도제목</h2>
+    <div class="prayer-box">
+      <div class="mk">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1-3-4-4.5-4-8a4 4 0 0 1 8 0c0 3.5-3 5-4 8Z" stroke="#1f6fd6" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 3v3M6 6l1.5 1.5M18 6l-1.5 1.5" stroke="#1f6fd6" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <h3>함께 기도해 주세요</h3>
+      <p>우리 아이들과 성경학교를 위한<br>기도제목을 곧 나눌 예정입니다.</p>
+      <span class="soon">준비 중입니다</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fk">See You There</div>
+    <div class="msg">이번 여름, 함께 떠나요.<br>아이들의 변화될 모습을 기대하며.</div>
+    <div class="sub">많은 기도와 관심, 후원 부탁드립니다.</div>
+    <div class="church">길교회 유년부 · 소년부</div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>계좌번호가 복사됐습니다</span></div>
+
+<script>
+(function(){
+  // star field
+  var sf=document.getElementById('stars');
+  if(sf){for(var i=0;i<30;i++){var s=document.createElement('i');var sz=Math.random()*2+1;s.style.width=s.style.height=sz+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*72+'%';s.style.animationDelay=(Math.random()*3.5)+'s';sf.appendChild(s);}}
+
+  // hero parallax + scroll progress
+  var heroInner=document.getElementById('heroInner');
+  var hero=document.getElementById('hero');
+  var bar=document.getElementById('progress');
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var ticking=false;
+  function onScroll(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY||window.pageYOffset;
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      if(bar)bar.style.width=(h>0?(y/h*100):0)+'%';
+      if(!reduce&&heroInner&&y<window.innerHeight){
+        heroInner.style.transform='translateY('+(y*0.28)+'px)';
+        heroInner.style.opacity=String(Math.max(0,1-y/(window.innerHeight*0.75)));
+      }
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  // reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // copy
+  var toast=document.getElementById('toast'),tt;
+  function show(){toast.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show');},1900);}
+  document.querySelectorAll('.acct').forEach(function(el){
+    el.addEventListener('click',function(){
+      var num=(el.getAttribute('data-copy')||'').trim();
+      function done(){el.classList.add('flashed');var c=el.querySelector('.cta');var o=c.innerHTML;c.innerHTML='<svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>완료';show();setTimeout(function(){el.classList.remove('flashed');c.innerHTML=o;},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(num).then(done).catch(function(){fb(num,done);});}else{fb(num,done);}
+    });
+  });
+  function fb(t,cb){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');cb();}catch(e){}document.body.removeChild(a);}
+})();
+</script>
+</body>
+</html>
