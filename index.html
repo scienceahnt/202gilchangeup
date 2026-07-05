@@ -17,7 +17,8 @@
 <meta name="twitter:image" content="thumbnail.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root{
     --navy:#0d2b4e;
@@ -36,11 +37,13 @@
     --accent-deep:#e8971a;
     --line:#e6edf5;
     --flash:#fff3d6;
+    --display:'Pretendard Variable',Pretendard,'Gothic A1',sans-serif;
+    --shadow-card:0 1px 2px rgba(13,43,78,.05),0 10px 28px rgba(13,43,78,.08);
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Gothic A1',sans-serif;
+    font-family:'Pretendard Variable',Pretendard,'Gothic A1',sans-serif;
     color:var(--ink);
     background:var(--bg);
     line-height:1.65;
@@ -84,14 +87,14 @@
   .eyebrow.center{justify-content:center;}
   .eyebrow.center::after{content:'';width:22px;height:2px;background:var(--blue);border-radius:2px;}
 
-  .sec-h{font-size:1.5rem;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.3;}
+  .sec-h{font-family:var(--display);font-size:1.6rem;font-weight:900;color:var(--navy);letter-spacing:-.015em;line-height:1.32;}
   .sec-sub{font-size:.92rem;color:var(--ink-3);margin-top:8px;}
 
   /* ---------- HERO ---------- */
   .hero{
     background:linear-gradient(165deg,#081f3b 0%,#0d2b4e 42%,#143c6b 78%,#1c5088 100%);
     color:#fff;
-    padding:74px 24px 58px;
+    padding:74px 24px 188px;
     position:relative;
     overflow:hidden;
     isolation:isolate;
@@ -128,6 +131,17 @@
   .stars{position:absolute;inset:0;z-index:-1;pointer-events:none;}
   .stars i{position:absolute;background:#fff;border-radius:50%;animation:tw 3.5s ease-in-out infinite;}
   @keyframes tw{0%,100%{opacity:.15;transform:scale(.7);}50%{opacity:.95;transform:scale(1);}}
+  /* hot air balloons */
+  .hb{position:absolute;z-index:1;pointer-events:none;
+    filter:drop-shadow(0 14px 26px rgba(0,0,0,.3));
+    animation:hbfloat 7.5s ease-in-out infinite;}
+  .hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:3;}
+  .hb1{width:88px;right:24px;bottom:38px;}
+  .hb2{width:38px;right:30px;top:22px;opacity:.5;animation-delay:-3.2s;animation-duration:10s;}
+  @keyframes hbfloat{
+    0%,100%{transform:translateY(0) rotate(-2.5deg);}
+    50%{transform:translateY(-16px) rotate(2.5deg);}
+  }
   /* shooting star */
   .hero .shoot{
     position:absolute;top:22%;left:-10%;width:90px;height:1.5px;z-index:-1;
@@ -151,7 +165,8 @@
     font-size:1rem;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.1em;margin-bottom:6px;
   }
   .hero h1{
-    font-size:2.35rem;font-weight:900;line-height:1.22;letter-spacing:-.03em;position:relative;
+    font-family:var(--display);
+    font-size:2.45rem;font-weight:900;line-height:1.26;letter-spacing:-.035em;position:relative;
   }
   .hero h1 em{font-style:normal;color:var(--sky);}
   .hero .theme{
@@ -170,7 +185,7 @@
   /* ---------- GREETING ---------- */
   .greeting{background:var(--paper);}
   .greeting p{font-size:1rem;color:var(--ink-2);margin-bottom:16px;font-weight:400;}
-  .greeting p.lead{font-size:1.18rem;font-weight:700;color:var(--ink);line-height:1.5;margin-bottom:20px;letter-spacing:-.02em;}
+  .greeting p.lead{font-family:var(--display);font-size:1.28rem;font-weight:900;color:var(--ink);line-height:1.5;margin-bottom:20px;letter-spacing:-.02em;}
   .greeting strong{color:var(--blue);font-weight:700;}
 
   /* ---------- INFO ---------- */
@@ -181,7 +196,7 @@
     padding:18px 20px;align-items:baseline;gap:6px;
   }
   .info-row .k{font-size:.82rem;font-weight:700;color:var(--blue);letter-spacing:.04em;}
-  .info-row .v{font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
+  .info-row .v{font-size:1.08rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
   .info-row .v small{display:block;font-size:.85rem;font-weight:400;color:var(--ink-3);margin-top:3px;letter-spacing:0;}
   .info-row .v small + small{margin-top:5px;padding-top:5px;border-top:1px dashed var(--line);}
 
@@ -203,12 +218,27 @@
   .stay .d{font-size:.85rem;color:rgba(255,255,255,.75);margin-top:3px;}
 
   /* ---------- GROWTH ---------- */
-  .growth{background:var(--bg);}
+  .growth{
+    background-color:var(--bg);
+    background-image:radial-gradient(rgba(18,58,104,.055) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  .schedule,.contact,.prayer{
+    background-color:var(--bg);
+    background-image:radial-gradient(rgba(18,58,104,.055) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
   .step{
     background:var(--paper);border:1px solid var(--line);border-radius:18px;
-    padding:22px 22px 20px;margin-top:14px;position:relative;
-    box-shadow:0 2px 12px rgba(18,58,104,.05);
+    padding:24px 22px 20px;margin-top:14px;position:relative;overflow:hidden;
+    box-shadow:var(--shadow-card);
   }
+  .step::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--blue-bright),#39c0d8);
+  }
+  .step + .step::before{background:linear-gradient(90deg,#39c0d8,#2fbf8f);}
+  .step + .step + .step::before{background:linear-gradient(90deg,var(--accent),var(--accent-deep));}
   .step .idx{
     font-size:.72rem;font-weight:800;letter-spacing:.14em;color:var(--blue);
     display:flex;align-items:center;gap:8px;margin-bottom:10px;
@@ -229,10 +259,10 @@
   .growth .tail{text-align:center;font-size:.9rem;color:var(--ink-3);margin-top:20px;font-weight:500;}
 
   /* ---------- SCHEDULE ---------- */
-  .schedule{background:var(--bg);}
+  /* schedule bg: textured (defined above) */
   .day{
     background:var(--paper);border:1px solid var(--line);border-radius:16px;
-    margin-top:12px;overflow:hidden;box-shadow:0 2px 12px rgba(18,58,104,.04);
+    margin-top:12px;overflow:hidden;box-shadow:var(--shadow-card);
   }
   .day summary{
     list-style:none;cursor:pointer;padding:18px 20px;
@@ -241,8 +271,8 @@
   .day summary::-webkit-details-marker{display:none;}
   .day .dl{display:flex;align-items:center;gap:12px;}
   .day .dn{
-    font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--blue);
-    background:var(--blue-soft);border-radius:8px;padding:5px 9px;white-space:nowrap;
+    font-size:.72rem;font-weight:800;letter-spacing:.08em;color:#fff;
+    background:linear-gradient(135deg,#123a68,#1f6fd6);border-radius:8px;padding:5px 10px;white-space:nowrap;
   }
   .day .dt{font-size:1.02rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
   .day .dt small{display:block;font-size:.78rem;font-weight:500;color:var(--ink-3);margin-top:1px;letter-spacing:0;}
@@ -254,6 +284,15 @@
   .day .r .tm{font-size:.82rem;font-weight:700;color:var(--blue);letter-spacing:-.01em;white-space:nowrap;}
   .day .r .ev{font-size:.92rem;color:var(--ink-2);font-weight:500;}
   .day .r .ev b{color:var(--ink);font-weight:700;}
+  .day .r .ev small{display:block;font-size:.8rem;color:var(--ink-3);font-weight:400;margin-top:3px;}
+  .day .r .ev .hl{color:var(--accent-deep);font-weight:800;}
+  .day .r .ev .branch{display:flex;gap:9px;align-items:baseline;}
+  .day .r .ev .branch + .branch{margin-top:7px;}
+  .day .r .ev .branch em{
+    font-style:normal;flex:0 0 auto;font-size:.7rem;font-weight:800;letter-spacing:.02em;
+    color:var(--blue);background:var(--blue-soft);padding:3px 9px;border-radius:7px;
+  }
+  .day .r .ev .branch.b-young em{color:var(--accent-deep);background:#fff3d6;}
 
   /* ---------- PACKING ---------- */
   .packing{background:var(--paper);}
@@ -261,25 +300,39 @@
     margin-top:22px;border-radius:18px;overflow:hidden;position:relative;
     background:linear-gradient(135deg,var(--accent),var(--accent-deep));
     padding:24px;color:#3a2a04;
+    box-shadow:0 12px 30px rgba(232,151,26,.28);
   }
+  .bible::before{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(135deg,rgba(255,255,255,.16) 0 2px,transparent 2px 16px);
+    opacity:.55;pointer-events:none;
+  }
+  .bible>*{position:relative;z-index:1;}
   .bible .tagline{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.7;}
-  .bible .name{font-size:1.6rem;font-weight:900;letter-spacing:-.02em;margin-top:6px;display:flex;align-items:center;gap:10px;}
+  .bible .name{font-family:var(--display);font-size:1.65rem;font-weight:900;letter-spacing:-.01em;margin-top:6px;display:flex;align-items:center;gap:10px;}
   .bible .name svg{width:28px;height:28px;}
   .bible .desc{font-size:.9rem;font-weight:600;margin-top:6px;opacity:.85;}
   .plist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+  .plist .p::before{
+    content:'';position:absolute;left:14px;top:16px;width:15px;height:15px;border-radius:5px;
+    background:var(--blue-soft);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M20 6 9 17l-5-5' stroke='%231f6fd6' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size:9px 9px;background-position:center;background-repeat:no-repeat;
+  }
   .plist .p{
+    position:relative;
     background:var(--bg);border:1px solid var(--line);border-radius:14px;
-    padding:14px 16px;font-size:.95rem;font-weight:600;color:var(--ink);
+    padding:14px 16px 14px 39px;font-size:.95rem;font-weight:600;color:var(--ink);
     display:flex;flex-direction:column;gap:2px;
   }
   .plist .p small{font-size:.78rem;color:var(--ink-3);font-weight:400;}
 
   /* ---------- CONTACT / SPONSOR ---------- */
-  .contact{background:var(--bg);}
+  /* contact bg: textured (defined above) */
   .sponsor{background:var(--paper);}
   .dept{
     background:var(--paper);border:1px solid var(--line);border-radius:18px;
-    padding:20px 22px;margin-top:14px;box-shadow:0 2px 12px rgba(18,58,104,.04);
+    padding:20px 22px;margin-top:14px;box-shadow:var(--shadow-card);
   }
   .contact .dept{background:var(--paper);}
   .dept .head{
@@ -319,7 +372,41 @@
   .acct.flashed .cta{color:var(--accent-deep);border-color:var(--accent);}
 
   /* ---------- PRAYER ---------- */
-  .prayer{background:var(--bg);}
+  /* prayer bg: textured (defined above) */
+  .pray-list{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:9px;}
+  .pray-list li{
+    display:flex;gap:13px;align-items:flex-start;
+    background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    padding:15px 17px;box-shadow:0 2px 10px rgba(18,58,104,.04);
+  }
+  .pray-list li i{
+    flex:0 0 auto;width:25px;height:25px;border-radius:8px;
+    background:var(--blue-soft);color:var(--blue);
+    font-style:normal;font-weight:800;font-size:.78rem;
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
+  }
+  .pray-list li p{font-size:.94rem;color:var(--ink-2);line-height:1.62;}
+  .pray-list li p b{color:var(--ink);font-weight:700;}
+  .pray-note{
+    margin-top:18px;text-align:center;
+    background:linear-gradient(135deg,#0d2b4e,#1b4c82);color:#fff;
+    border-radius:16px;padding:16px 20px;font-size:.9rem;font-weight:700;
+    letter-spacing:-.01em;line-height:1.55;position:relative;overflow:hidden;
+  }
+  .pray-note::after{content:'';position:absolute;right:-24px;top:-24px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(255,176,32,.28),transparent 70%);}
+  .pray-note span{color:#ffd066;}
+  /* stagger for prayer items */
+  .reveal .pray-list li{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,.8,.24,1),transform .55s cubic-bezier(.16,.8,.24,1);}
+  .reveal.in .pray-list li{opacity:1;transform:none;}
+  .reveal.in .pray-list li:nth-child(2){transition-delay:.05s;}
+  .reveal.in .pray-list li:nth-child(3){transition-delay:.1s;}
+  .reveal.in .pray-list li:nth-child(4){transition-delay:.15s;}
+  .reveal.in .pray-list li:nth-child(5){transition-delay:.2s;}
+  .reveal.in .pray-list li:nth-child(6){transition-delay:.25s;}
+  .reveal.in .pray-list li:nth-child(7){transition-delay:.3s;}
+  .reveal.in .pray-list li:nth-child(8){transition-delay:.35s;}
+  .reveal.in .pray-list li:nth-child(9){transition-delay:.4s;}
+  .reveal.in .pray-list li:nth-child(10){transition-delay:.45s;}
   .prayer-box{
     margin-top:20px;border:1.5px dashed var(--blue-line);border-radius:18px;
     padding:36px 24px;text-align:center;background:var(--paper);
@@ -342,8 +429,9 @@
     padding:48px 24px 42px;text-align:center;position:relative;overflow:hidden;
   }
   footer::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);}
+  .fballoon{width:46px;display:block;margin:0 auto 18px;animation:hbfloat 8s ease-in-out infinite;position:relative;z-index:2;}
   footer .fk{font-size:.72rem;font-weight:700;letter-spacing:.28em;color:var(--sky);text-transform:uppercase;margin-bottom:16px;}
-  footer .msg{font-size:1.25rem;font-weight:800;letter-spacing:-.02em;line-height:1.4;}
+  footer .msg{font-family:var(--display);font-size:1.3rem;font-weight:900;letter-spacing:-.015em;line-height:1.5;}
   footer .sub{font-size:.92rem;color:rgba(255,255,255,.7);margin-top:12px;}
   footer .church{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.95rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:.02em;}
 
@@ -374,6 +462,26 @@
     <div class="clouds" aria-hidden="true"><i class="cl1"></i><i class="cl2"></i></div>
     <div class="stars" id="stars" aria-hidden="true"></div>
     <div class="shoot" aria-hidden="true"></div>
+    <svg class="hb hb1" viewBox="0 0 120 168" aria-hidden="true">
+      <defs>
+        <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e8971a"/><stop offset=".45" stop-color="#ffd066"/><stop offset="1" stop-color="#e8971a"/>
+        </linearGradient>
+      </defs>
+      <path d="M60 6C31 6 12 30 12 57c0 30 27 47 41 61h14c14-14 41-31 41-61C108 30 89 6 60 6Z" fill="url(#hbg)"/>
+      <path d="M60 6c-11 0-17 25-17 51 0 28 8 47 12 61h10c4-14 12-33 12-61 0-26-6-51-17-51Z" fill="rgba(255,255,255,.30)"/>
+      <path d="M60 6C43 6 32 28 32 55c0 29 15 48 23 63" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.4"/>
+      <path d="M60 6c17 0 28 22 28 49 0 29-15 48-23 63" fill="none" stroke="rgba(13,43,78,.18)" stroke-width="1.4"/>
+      <path d="M51 118l-4 16M69 118l4 16" stroke="#0d2b4e" stroke-width="2.2" stroke-linecap="round"/>
+      <rect x="44" y="134" width="32" height="22" rx="5" fill="#0d2b4e" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/>
+      <line x1="44" y1="142" x2="76" y2="142" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/>
+    </svg>
+    <svg class="hb hb2" viewBox="0 0 120 168" aria-hidden="true">
+      <path d="M60 6C31 6 12 30 12 57c0 30 27 47 41 61h14c14-14 41-31 41-61C108 30 89 6 60 6Z" fill="#7fbef0"/>
+      <path d="M60 6c-11 0-17 25-17 51 0 28 8 47 12 61h10c4-14 12-33 12-61 0-26-6-51-17-51Z" fill="rgba(255,255,255,.35)"/>
+      <path d="M51 118l-4 16M69 118l4 16" stroke="#0d2b4e" stroke-width="2.2" stroke-linecap="round"/>
+      <rect x="44" y="134" width="32" height="22" rx="5" fill="#0d2b4e"/>
+    </svg>
     <div class="hero-inner" id="heroInner">
     <div class="kicker">Change Up · 체인지 업</div>
     <div class="year">2026 여름성경학교</div>
@@ -384,11 +492,15 @@
     </div>
     <p class="verse">이전 것은 지나갔으니 보라<br><b>새것이 되었도다</b> — 고린도후서 5:17</p>
     </div>
+    <svg class="wave" viewBox="0 0 390 56" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 56V30C52 10 118 44 196 32 274 20 330 6 390 24V56Z" fill="rgba(255,255,255,.10)"/>
+      <path d="M0 56V38C60 18 126 50 200 40 278 29 336 16 390 32V56Z" fill="#ffffff"/>
+    </svg>
   </header>
 
   <!-- GREETING -->
   <section class="greeting reveal">
-    <div class="eyebrow">Welcome</div>
+    <div class="eyebrow">01 · Welcome</div>
     <p class="lead">샬롬, 주님의 이름으로<br>문안드립니다.</p>
     <p>사랑하는 자녀가 하나님의 말씀과 은혜 가운데 바르게 자랄 수 있도록 늘 기도와 사랑으로 함께해 주셔서 감사합니다.</p>
     <p>이번 여름, 우리 아이들이 예수님을 만나 <strong>하나님이 원하시는 모습</strong>으로 변화되고 자라가기를 기대하며 이 성경학교를 준비했습니다.</p>
@@ -396,7 +508,7 @@
 
   <!-- INFO -->
   <section class="info reveal">
-    <div class="eyebrow">Overview</div>
+    <div class="eyebrow">02 · Overview</div>
     <h2 class="sec-h">한눈에 보기</h2>
     <div class="info-grid">
       <div class="info-row"><span class="k">주제</span><span class="v">체인지 업 (Change Up)<small>고린도후서 5:17 · 새로운 피조물</small></span></div>
@@ -435,7 +547,7 @@
 
   <!-- GROWTH -->
   <section class="growth reveal">
-    <div class="eyebrow">Journey</div>
+    <div class="eyebrow">03 · Journey</div>
     <h2 class="sec-h">우리 아이, 이렇게 자랍니다</h2>
     <p class="sec-sub">사흘 동안 세 걸음으로 성장하는 여정</p>
 
@@ -462,7 +574,7 @@
 
   <!-- SCHEDULE -->
   <section class="schedule reveal">
-    <div class="eyebrow">Schedule</div>
+    <div class="eyebrow">04 · Schedule</div>
     <h2 class="sec-h">일정표</h2>
     <p class="sec-sub">날짜를 누르면 세부 일정이 펼쳐집니다</p>
 
@@ -507,14 +619,17 @@
       <div class="rows">
         <div class="r"><span class="tm">10:00까지</span><span class="ev">교회로!</span></div>
         <div class="r"><span class="tm">예배</span><span class="ev"><b>3과</b> 성장으로 체인지 업!</span></div>
-        <div class="r"><span class="tm">이후</span><span class="ev">1학기 달란트 시상 및 수료식</span></div>
+        <div class="r"><span class="tm">이후</span><span class="ev">
+          <span class="branch b-boy"><em>소년부</em>1학기 달란트 시상 및 수료식</span>
+          <span class="branch b-young"><em>유년부</em>프로그램 진행</span>
+        </span></div>
       </div>
     </details>
   </section>
 
   <!-- PACKING -->
   <section class="packing reveal">
-    <div class="eyebrow">Checklist</div>
+    <div class="eyebrow">05 · Checklist</div>
     <h2 class="sec-h">준비물</h2>
     <p class="sec-sub">1박 2일, 아래 물품을 꼭 챙겨 주세요</p>
 
@@ -541,7 +656,7 @@
 
   <!-- CONTACT -->
   <section class="contact reveal">
-    <div class="eyebrow">Contact</div>
+    <div class="eyebrow">06 · Contact</div>
     <h2 class="sec-h">문의</h2>
     <p class="sec-sub">궁금한 점은 언제든지 연락 주세요</p>
 
@@ -559,20 +674,32 @@
 
   <!-- PRAYER -->
   <section class="prayer reveal">
-    <div class="eyebrow">Pray Together</div>
-    <h2 class="sec-h">기도제목</h2>
-    <div class="prayer-box">
-      <div class="mk">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1-3-4-4.5-4-8a4 4 0 0 1 8 0c0 3.5-3 5-4 8Z" stroke="#1f6fd6" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 3v3M6 6l1.5 1.5M18 6l-1.5 1.5" stroke="#1f6fd6" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </div>
-      <h3>함께 기도해 주세요</h3>
-      <p>우리 아이들과 성경학교를 위한<br>기도제목을 곧 나눌 예정입니다.</p>
-      <span class="soon">준비 중입니다</span>
-    </div>
+    <div class="eyebrow">07 · Pray Together</div>
+    <h2 class="sec-h">성경학교 기도제목</h2>
+    <p class="sec-sub">우리 아이들과 성경학교를 위해 함께 기도해 주세요</p>
+    <ol class="pray-list">
+      <li><i>1</i><p>우리 모두의 마음에 성경학교를 <b>기대하는 마음</b>을 주시고 기쁨으로 참석하게 하소서.</p></li>
+      <li><i>2</i><p>감사와 기도로 준비하게 하시고 모든 프로그램이 잘 진행되도록 <b>교사들에게 지혜와 능력</b>을 넘치게 주소서.</p></li>
+      <li><i>3</i><p>교회에 나오지 못했던 친구들이 다시 교회에 나오는 기회 되게 하시고, 예수님을 믿지 않는 친구들을 많이 보내주시어 <b>예수님을 만나게</b> 하소서.</p></li>
+      <li><i>4</i><p>참석하는 교사, 어린이 모두 <b>성경을 사랑하게</b> 하소서.</p></li>
+      <li><i>5</i><p>교사와 어린이들이 성경학교에 집중할 수 있는 환경 되게 하시고 <b>은혜가 충만하게</b> 하소서.</p></li>
+      <li><i>6</i><p>성경학교를 돕는 분들에게 <b>기쁨으로 섬기도록</b> 은혜를 더하소서.</p></li>
+      <li><i>7</i><p>성경학교에 필요한 <b>재정을 채우시고</b> 부족함 없이 풍성하게 하소서.</p></li>
+      <li><i>8</i><p><b>좋은 날씨</b>를 주셔서 성경학교가 즐거운 축제가 되게 하소서.</p></li>
+      <li><i>9</i><p><b>안전하고 즐거운</b> 성경학교 되도록 처음부터 끝까지 지켜주소서.</p></li>
+      <li><i>10</i><p>유년부, 소년부가 서로 사랑하며 <b>하나 되어 하나님께 영광</b> 돌리게 하소서.</p></li>
+    </ol>
+    <div class="pray-note">가정에서 함께, 성경학교를 사모하는 마음으로<br><span>중보 기도 부탁드려요 ♡</span></div>
   </section>
 
   <!-- FOOTER -->
   <footer>
+    <svg class="fballoon" viewBox="0 0 120 168" aria-hidden="true">
+      <path d="M60 6C31 6 12 30 12 57c0 30 27 47 41 61h14c14-14 41-31 41-61C108 30 89 6 60 6Z" fill="none" stroke="#ffb020" stroke-width="3"/>
+      <path d="M60 6C43 6 32 28 32 55c0 29 15 48 23 63M60 6c17 0 28 22 28 49 0 29-15 48-23 63" fill="none" stroke="rgba(255,176,32,.45)" stroke-width="2"/>
+      <path d="M51 118l-4 16M69 118l4 16" stroke="#ffb020" stroke-width="2.4" stroke-linecap="round"/>
+      <rect x="44" y="134" width="32" height="22" rx="5" fill="none" stroke="#ffb020" stroke-width="3"/>
+    </svg>
     <div class="fk">See You There</div>
     <div class="msg">이번 여름, 함께 떠나요.<br>아이들의 변화될 모습을 기대하며.</div>
     <div class="sub">많은 기도와 관심, 후원 부탁드립니다.</div>
