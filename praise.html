@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b2a4a">
+<title>체인지 업 찬양 — 2026 길교회 여름성경학교</title>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --navy:#0d2b4e;--blue:#1f6fd6;--blue-bright:#2e86e6;--blue-soft:#eaf3fd;--blue-line:#d6e6f7;
+    --sky:#7fbef0;--ink:#152a3f;--ink-2:#4a5d72;--ink-3:#8496a8;
+    --paper:#ffffff;--bg:#f4f8fd;--accent:#ffb020;--accent-deep:#e8971a;--line:#e6edf5;
+    --display:'Pretendard Variable',Pretendard,'Gothic A1',sans-serif;
+    --shadow-card:0 1px 2px rgba(13,43,78,.05),0 10px 28px rgba(13,43,78,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    font-family:'Pretendard Variable',Pretendard,'Gothic A1',sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
+
+  /* header */
+  .top{
+    background:linear-gradient(160deg,#081f3b,#123a68);color:#fff;
+    padding:18px 20px 20px;position:relative;overflow:hidden;
+  }
+  .top::after{content:'';position:absolute;right:-30px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(46,134,230,.4),transparent 70%);}
+  .back{
+    display:inline-flex;align-items:center;gap:7px;
+    color:rgba(255,255,255,.85);text-decoration:none;
+    font-size:.88rem;font-weight:700;
+    padding:8px 14px 8px 10px;border:1px solid rgba(255,255,255,.22);border-radius:100px;
+    background:rgba(255,255,255,.07);position:relative;z-index:1;
+  }
+  .back svg{width:16px;height:16px;}
+  .top h1{
+    font-family:var(--display);font-size:1.5rem;font-weight:900;letter-spacing:-.02em;
+    margin-top:16px;position:relative;z-index:1;
+  }
+  .top .sub{font-size:.85rem;color:rgba(255,255,255,.65);margin-top:3px;position:relative;z-index:1;}
+
+  /* sticky player */
+  .player{
+    position:sticky;top:0;z-index:20;
+    background:#081f3b;padding:0 0 2px;
+    box-shadow:0 10px 26px rgba(8,31,59,.35);
+  }
+  .player video{width:100%;display:block;aspect-ratio:16/9;background:#000;}
+  .now{
+    display:flex;align-items:center;gap:10px;
+    padding:11px 16px;background:#081f3b;color:#fff;
+  }
+  .now .eq{display:flex;align-items:flex-end;gap:2.5px;height:14px;flex:0 0 auto;}
+  .now .eq i{width:3px;background:var(--accent);border-radius:2px;animation:eq 1s ease-in-out infinite;height:5px;}
+  .now .eq i:nth-child(2){animation-delay:.2s;}
+  .now .eq i:nth-child(3){animation-delay:.4s;}
+  @keyframes eq{0%,100%{height:5px;}50%{height:14px;}}
+  .now.paused .eq i{animation-play-state:paused;height:5px;}
+  .now .nt{font-size:.92rem;font-weight:800;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .now .nn{flex:0 0 auto;margin-left:auto;font-size:.75rem;color:rgba(255,255,255,.55);font-weight:600;}
+
+  /* list */
+  .list{flex:1;padding:16px 16px 40px;display:flex;flex-direction:column;gap:8px;}
+  .song{
+    display:flex;align-items:center;gap:13px;width:100%;text-align:left;
+    border:1px solid var(--line);background:var(--paper);border-radius:14px;
+    padding:13px 15px;cursor:pointer;font-family:inherit;
+    box-shadow:var(--shadow-card);transition:transform .1s,border-color .2s,background .2s;
+  }
+  .song:active{transform:scale(.985);}
+  .song .no{
+    flex:0 0 auto;width:30px;height:30px;border-radius:9px;
+    background:var(--blue-soft);color:var(--blue);
+    font-size:.82rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .song .ti{font-size:.98rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+  .song .pl{
+    flex:0 0 auto;margin-left:auto;width:30px;height:30px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:transparent;color:var(--ink-3);
+  }
+  .song .pl svg{width:15px;height:15px;margin-left:1px;}
+  .song.active{
+    border-color:var(--accent);background:#fffaf0;
+  }
+  .song.active .no{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;}
+  .song.active .ti{font-weight:800;}
+  .song.active .pl{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(232,151,26,.35);}
+
+  .hint{
+    text-align:center;font-size:.8rem;color:var(--ink-3);padding:2px 20px 6px;
+  }
+
+  footer{
+    text-align:center;padding:18px 20px 34px;background:var(--bg);
+    font-size:.85rem;color:var(--ink-3);
+  }
+  footer a{color:var(--blue);font-weight:800;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="back" href="./">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      웰컴레터로 돌아가기
+    </a>
+    <h1>체인지 업 찬양</h1>
+    <p class="sub">2026 여름성경학교 · 총 11곡 — 미리 듣고 함께 불러요</p>
+  </header>
+
+  <div class="player">
+    <video id="vp" controls playsinline preload="none" poster=""></video>
+    <div class="now paused" id="now">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="nt" id="nowTitle">곡을 선택해 주세요</span>
+      <span class="nn" id="nowNo"></span>
+    </div>
+  </div>
+
+  <p class="hint">곡을 누르면 위 플레이어에서 재생됩니다 · 곡이 끝나면 자동으로 다음 곡으로 넘어가요</p>
+
+  <div class="list" id="list"></div>
+
+  <footer>
+    <a href="./">← 웰컴레터로 돌아가기</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var songs=[
+    {t:'체인지업',f:'song01.mp4'},
+    {t:'나눠요',f:'song02.mp4'},
+    {t:'삭개오의 고백',f:'song03.mp4'},
+    {t:'내가 전하겠어요',f:'song04.mp4'},
+    {t:'예수님 만난 후',f:'song05.mp4'},
+    {t:'나는 예배자입니다',f:'song06.mp4'},
+    {t:'순종의 고백',f:'song07.mp4'},
+    {t:'예수님 날 사랑하시니',f:'song08.mp4'},
+    {t:'온땅이여 주님을',f:'song09.mp4'},
+    {t:'너와 나의 모습이',f:'song10.mp4'},
+    {t:'천국은 마치',f:'song11.mp4'}
+  ];
+  var vp=document.getElementById('vp');
+  var list=document.getElementById('list');
+  var nowTitle=document.getElementById('nowTitle');
+  var nowNo=document.getElementById('nowNo');
+  var nowBar=document.getElementById('now');
+  var cur=-1;
+
+  songs.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='song';b.type='button';
+    b.innerHTML='<span class="no">'+(i+1)+'</span><span class="ti"></span>'+
+      '<span class="pl"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></svg></span>';
+    b.querySelector('.ti').textContent=s.t;
+    b.addEventListener('click',function(){play(i,true);});
+    list.appendChild(b);
+  });
+
+  function play(i,scrollPlayer){
+    if(i<0||i>=songs.length)return;
+    cur=i;
+    var s=songs[i];
+    vp.src=s.f;
+    vp.play().catch(function(){});
+    nowTitle.textContent=s.t;
+    nowNo.textContent=(i+1)+' / '+songs.length;
+    var rows=list.querySelectorAll('.song');
+    rows.forEach(function(r,ri){r.classList.toggle('active',ri===i);});
+    if(scrollPlayer)window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  vp.addEventListener('play',function(){nowBar.classList.remove('paused');});
+  vp.addEventListener('pause',function(){nowBar.classList.add('paused');});
+  vp.addEventListener('ended',function(){
+    if(cur<songs.length-1)play(cur+1,false);
+    else nowBar.classList.add('paused');
+  });
+})();
+</script>
+</body>
+</html>

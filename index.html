@@ -258,6 +258,28 @@
   }
   .growth .tail{text-align:center;font-size:.9rem;color:var(--ink-3);margin-top:20px;font-weight:500;}
 
+  /* praise video card + modal */
+  .praise-card{
+    text-decoration:none;
+    margin-top:18px;width:100%;border:none;cursor:pointer;font-family:inherit;text-align:left;
+    background:linear-gradient(135deg,#0d2b4e,#1b4c82);color:#fff;
+    border-radius:18px;padding:20px 22px;display:flex;align-items:center;gap:16px;
+    position:relative;overflow:hidden;box-shadow:var(--shadow-card);
+    transition:transform .12s;
+  }
+  .praise-card:active{transform:scale(.985);}
+  .praise-card::after{content:'';position:absolute;right:-26px;top:-26px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(255,176,32,.3),transparent 70%);}
+  .praise-card .play{
+    flex:0 0 auto;width:54px;height:54px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 18px rgba(232,151,26,.4);
+  }
+  .praise-card .play svg{width:20px;height:20px;margin-left:3px;}
+  .praise-card .t{font-family:var(--display);font-size:1.08rem;font-weight:900;letter-spacing:-.02em;position:relative;z-index:1;}
+  .praise-card .d{font-size:.85rem;color:rgba(255,255,255,.72);margin-top:3px;position:relative;z-index:1;}
+
+
   /* ---------- SCHEDULE ---------- */
   /* schedule bg: textured (defined above) */
   .day{
@@ -570,6 +592,16 @@
       <span class="loc">어드벤처 빌리지</span>
     </div>
     <p class="tail">찬양 · 주제활동 · 액션북 · 물놀이까지 알찬 시간이 가득합니다</p>
+
+    <a class="praise-card" href="praise.html">
+      <span class="play">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="#fff"/></svg>
+      </span>
+      <span>
+        <span class="t">체인지 업 찬양 11곡 듣기</span>
+        <span class="d" style="display:block;">이번 성경학교에서 함께 부를 찬양을 미리 만나보세요</span>
+      </span>
+    </a>
   </section>
 
   <!-- SCHEDULE -->
