@@ -279,6 +279,26 @@
   .praise-card .t{font-family:var(--display);font-size:1.08rem;font-weight:900;letter-spacing:-.02em;position:relative;z-index:1;}
   .praise-card .d{font-size:.85rem;color:rgba(255,255,255,.72);margin-top:3px;position:relative;z-index:1;}
 
+  .praisesec{background:var(--paper);}
+  .vwrap{margin-top:18px;}
+  .vcap{margin-top:10px;font-size:.85rem;font-weight:700;color:var(--ink-2);text-align:center;letter-spacing:-.01em;}
+  .vwrap video{
+    width:100%;display:block;aspect-ratio:16/9;border-radius:16px;background:#000;
+    box-shadow:0 14px 36px rgba(13,43,78,.25);
+  }
+  .coming{
+    margin-top:16px;background:var(--bg);border:1.5px dashed var(--blue-line);
+    border-radius:16px;padding:18px;
+  }
+  .coming .ct{font-family:var(--display);font-size:1rem;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+  .coming .cd{font-size:.86rem;color:var(--ink-2);margin-top:4px;}
+  .coming .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px;}
+  .coming .chips span{
+    font-size:.78rem;font-weight:600;color:var(--ink-3);
+    background:var(--paper);border:1px solid var(--line);border-radius:100px;
+    padding:5px 12px;
+  }
+
 
   /* ---------- SCHEDULE ---------- */
   /* schedule bg: textured (defined above) */
@@ -592,16 +612,6 @@
       <span class="loc">어드벤처 빌리지</span>
     </div>
     <p class="tail">찬양 · 주제활동 · 액션북 · 물놀이까지 알찬 시간이 가득합니다</p>
-
-    <a class="praise-card" href="praise.html">
-      <span class="play">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="#fff"/></svg>
-      </span>
-      <span>
-        <span class="t">체인지 업 찬양 11곡 듣기</span>
-        <span class="d" style="display:block;">이번 성경학교에서 함께 부를 찬양을 미리 만나보세요</span>
-      </span>
-    </a>
   </section>
 
   <!-- SCHEDULE -->
@@ -722,6 +732,29 @@
       <li><i>10</i><p>유년부, 소년부가 서로 사랑하며 <b>하나 되어 하나님께 영광</b> 돌리게 하소서.</p></li>
     </ol>
     <div class="pray-note">가정에서 함께, 성경학교를 사모하는 마음으로<br><span>중보 기도 부탁드려요 ♡</span></div>
+  </section>
+
+  <!-- PRAISE -->
+  <section class="praisesec reveal">
+    <div class="eyebrow">08 · Praise</div>
+    <h2 class="sec-h">찬양</h2>
+    <p class="sec-sub">주제곡 「체인지업」 을 가장 먼저 만나보세요</p>
+
+    <div class="vwrap open">
+      <video id="themeVideo" src="song01.mp4" controls playsinline preload="metadata"></video>
+      <div class="vcap">주제곡 · 체인지업</div>
+    </div>
+
+    <div class="coming">
+      <div class="ct">나머지 찬양 10곡은 준비 중이에요</div>
+      <div class="cd">이번 주중에 순차적으로 업로드될 예정입니다. 조금만 기다려 주세요!</div>
+      <div class="chips">
+        <span>나눠요</span><span>삭개오의 고백</span><span>내가 전하겠어요</span>
+        <span>예수님 만난 후</span><span>나는 예배자입니다</span><span>순종의 고백</span>
+        <span>예수님 날 사랑하시니</span><span>온땅이여 주님을</span><span>너와 나의 모습이</span>
+        <span>천국은 마치</span>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
